@@ -1,0 +1,1 @@
+Hi, I just started a new project. I have a claude.md file, a prd, a readme.md, and a security.md. I need you to ask me questions to build my next project and make sure I update all of these files. I am an absolute beginner. Please ask me the right questions so we change these files and update these files appropriately. 
