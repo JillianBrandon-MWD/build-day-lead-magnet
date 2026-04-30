@@ -113,3 +113,31 @@ If this file exceeds ~1 page, audit and move content out.
 ---
 
 **Rule of Thumb:** If unsure, ask before acting. Better to clarify than break something.
+
+---
+
+## Autonomous Build Rules
+
+These rules activate when executing the 9-step plan in `spec/plan.md`. They override the "ask first" default for routine build actions only.
+
+### Execute without stopping
+- Follow the Implementation Order in `spec/plan.md` exactly — step N must finish before step N+1 starts.
+- Do not ask for confirmation between steps unless a blocker arises.
+- One file per step. Do not bundle multiple steps into one turn.
+
+### After every step
+- Run `pnpm lint && pnpm type-check` (once the project is scaffolded). Fix any failure before continuing.
+- Commit with message `step N: <short description>` using `/commit`.
+- Check the corresponding box in `PROGRESS.md`.
+
+### When to stop and flag
+- A step produces a TypeScript error, lint failure, or test failure that cannot be fixed in < 3 attempts.
+- A package outside the PRD tech stack is needed.
+- Any schema change is required beyond what `spec/plan.md` defines.
+- An env var is missing that cannot be a placeholder.
+
+### Never during autonomous build
+- Skip or reorder steps without stating the reason.
+- Install a package not in the PRD tech stack without approval.
+- Modify `spec/plan.md` or `PRD.md` without flagging it as a deviation.
+- Proceed past a failed lint/type-check.
